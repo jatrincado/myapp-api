@@ -2,8 +2,12 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @articles = Article.all
+    @articles = Article.all.order('created_at DESC')
+    if !user_signed_in?
+      @articles = @articles.limit(10)
+    end
   end
+
   def show
   end
 

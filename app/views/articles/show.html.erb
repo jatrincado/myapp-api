@@ -18,11 +18,18 @@
   <%= @article.link %>
 </p>
 
+<p>
+  <strong>Posted:</strong>
+  <%= @article.created_at %>
+</p>
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
+<h3>Add a comment:</h3>
 <%= render 'comments/form' %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_article_path(@article) %>
+<% end %>
 <%= link_to 'Back', articles_path %>
