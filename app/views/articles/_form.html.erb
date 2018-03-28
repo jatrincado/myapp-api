@@ -16,26 +16,26 @@
 
   <div class="form-group">
     <p>
-      <%= form.label :title %><br>
+      <%= form.label "Titulo" %><br>
       <%= form.text_field :title, class: "form-control" %>
     </p>
   </div>
   <p>
-    <%= form.label :summary %><br>
+    <%= form.label "Bajada" %><br>
     <%= form.text_area :summary, class: "form-control" %>
   </p>
 
   <p>
-    <%= form.label :body %><br>
+    <%= form.label "Contenido" %><br>
     <%= form.text_area :body, class: "form-control" %>
   </p>
 
   <p>
-    <%= form.label :link %><br>
+    <%= form.label "Referencia" %><br>
     <%= form.text_field :link, class: "form-control" %>
   </p>
 
   <p>
-    <%= form.submit %>
+    <%= form.submit 'Crear noticia', class: "btn btn-lg btn-primary btn-block" %>
   </p>
 <% end %>

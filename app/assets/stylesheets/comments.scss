@@ -1,7 +1,12 @@
 .comments-stream{
-  min-width: 700px;
+  min-width: 600px;
   max-width: 800px;
-  max-height: 300px;
+  min-height: 250px;
+  width: 75%;
   overflow: scroll;
   margin: auto;
+}
+
+.comments-form{
+  width: 25%;
 }

@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    smart_add_url_protocol
     if @article.save
       redirect_to @article
     else
@@ -38,6 +39,17 @@ class ArticlesController < ApplicationController
   end
 
 private
+  def smart_add_url_protocol
+    u = URI.parse(@article.link)
+    if (!u.scheme)
+      @article.link = "http://#{@article.link}"
+    elsif (%w{http https}.include?(u.scheme))
+    else
+      flash[:alert] = "Error: link inválido."
+    end
+  end
+
+
   def set_article
     @article = Article.find(params[:id])
   end

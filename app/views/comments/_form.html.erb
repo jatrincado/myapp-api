@@ -1,5 +1,6 @@
-<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
 
+<div class="form-control">
+<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
   <p>
     <%= form.label "Nombre" %><br>
     <%= form.text_field :commenter %>
@@ -12,3 +13,4 @@
     <%= form.submit %>
   </p>
 <% end %>
+</div>
