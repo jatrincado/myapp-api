@@ -1,0 +1,14 @@
+
+<div class="album py-5 bg-light">
+<div class="container">
+<div class="row">
+  <% if @articles %>
+    <% @articles.each do |article| %>
+      <%= render 'articles/preview', article: article %>
+    <% end %>
+  <% else %>
+    <h1 class="h2 mb-3 font-weight-normal">No hay noticias</h1>
+  <% end %>
+</div>
+</div>
+</div>

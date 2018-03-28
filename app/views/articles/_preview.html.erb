@@ -1,0 +1,19 @@
+<div class="col-md-6">
+  <div class="card mb-4 box-shadow">
+      <div class="card-body">
+
+        <div class="card-title">
+          <h4><%= link_to article.title, article_path(article)%></h4>
+          <p class="lead"><%= article.summary %></p>
+        </div>
+        <hr>
+        <p class="card-text"><%= truncate(article.body, :length => 500) %></p>
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="<%= article.link %>" class="btn btn-sm btn-outline-primary">Link</a>
+            <h5 class="text-muted"><%= article.comments.count %> comments</h5>
+          <small class="text-muted"><%= time_ago_in_words(article.created_at) %></small>
+        </div>
+
+      </div>
+  </div>
+</div>
