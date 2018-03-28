@@ -58,3 +58,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
+
+# API
+gem 'grape'
+gem 'doorkeeper', '~> 2.2.2'
+
+# Basic requirements
+gem 'haml' # All the view files are in haml
+gem 'bootstrap-sass' # All the views are styled with bootstrap
+gem 'kaminari' # Pagination - could be will_paginate instead
+
+# Grape extensions
+gem 'wine_bouncer' # Authentication, adds swagger documentation
+gem 'api-pagination' # API pagination. Relies on kaminari or will_paginate being present
+gem 'grape-swagger' # Adds swagger documentation to grape
+
+# Swagger UI
+gem 'swagger-ui_rails' # Add swagger-ui assests to asset pipeline
+gem 'kramdown' # Swagger-ui markdown parser
+gem 'rack-cors', :require => 'rack/cors' # Make Swagger spec CORS, required!

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+    get 'welcome/index'
 
   devise_for :users, skip: [:sessions]
   as :user do
@@ -12,4 +12,15 @@ Rails.application.routes.draw do
     resources :comments
   end
   root 'welcome#index'
+
+
+  use_doorkeeper # doorkeeper
+  mount API::Base => '/api' # Grape
+
+  resources :documentation, only: [:index] do # swagger-ui
+    collection do # documentation token redirect
+      get :o2c
+      get :authorize
+    end
+  end
 end
