@@ -20,7 +20,7 @@
         </div>
         <% if @article.comments.count > 0 %>
           <div class="comments-stream">
-            <%= render @article.comments %>
+            <%= render @article.comments.reverse %>
           </div>
         <% end %>
       </div>
@@ -28,9 +28,12 @@
 
 
         <% if user_signed_in? %>
-          <%= link_to 'Edit', edit_article_path(@article) %>
+          <%= link_to 'Editar', edit_article_path(@article) %>
+          <%= link_to 'Atrás', articles_path %>
+        <% else %>
+          <%= link_to 'Atrás', root_path %>
         <% end %>
-        <%= link_to 'Back', root_path %>
+
 
     </div>
 </div>

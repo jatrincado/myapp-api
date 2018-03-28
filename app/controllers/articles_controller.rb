@@ -3,9 +3,6 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   def index
     @articles = Article.all.order('created_at DESC')
-    if !user_signed_in?
-      @articles = @articles.limit(10)
-    end
   end
 
   def show

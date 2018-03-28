@@ -1,7 +1,7 @@
 <div class="text-center signin-body">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
       <%= devise_error_messages! %>
-      <h1 class="h2 mb-3 font-weight-normal">Please log in</h1>
+      <h1 class="h2 mb-3 font-weight-normal">Ingresar</h1>
       <div class="field">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: :email, class: "form-control", id: "inputEmail"%>
       </div>

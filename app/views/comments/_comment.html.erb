@@ -3,22 +3,23 @@
 <div class="container">
   <div class="row">
     <p>
-      <strong>Commenter:</strong>
+      <strong>Nombre:</strong>
       <%= comment.commenter %>
     </p>
   </div>
-  <hr>
+
   <div class="row">
     <p>
-      <strong>Comment:</strong>
+      <strong>Commentario:</strong>
       <%= comment.body %>
     </p>
   </div>
+  <hr>
     <% if user_signed_in? %>
       <p>
-        <%= link_to 'Destroy Comment', [comment.article, comment],
+        <%= link_to 'Borrar comentario', [comment.article, comment],
                      method: :delete,
-                     data: { confirm: 'Are you sure?' } %>
+                     data: { confirm: '¿Estás seguro?' } %>
       </p>
     <% end %>
 </div>

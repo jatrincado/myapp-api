@@ -1,40 +1,35 @@
 <div>
   <% if user_signed_in? %>
-    <%= link_to 'New article', new_article_path %>
+    <%= link_to 'Nueva noticia', new_article_path, class: "btn btn-primary btn-lg" %>
   <% end %>
   <br>
+  <br>
   <% if @articles %>
-    <table>
-      <tr>
-        <th>Title</th>
-        <th>Summary</th>
-        <th>Body</th>
-        <th>Link</th>
-        <th>Comments</th>
-        <% if user_signed_in? %>
-          <th>Posted</th>
-        <% end %>
-        <th colspan="2"></th>
-      </tr>
+    <div class="container card">
+      <div class="row font-weight-bold">
+        <div class="col-md-4">Noticia</div>
+        <div class="col-md-4">Fecha de publicación</div>
+        <div class="col-md-4">Acciones</div>
+      </div>
 
       <% @articles.each do |article| %>
-        <tr>
-          <td><%= link_to article.title, article_path(article)%></td>
-          <td><%= article.summary %></td>
-          <td><%= truncate(article.body, :length => 500) %></td>
-          <td><%= article.link %></td>
-          <td><%= article.comments.count %></td>
-          <% if user_signed_in? %>
-            <td><%= article.created_at %></td>
-            <td><%= link_to 'Edit', edit_article_path(article) %></td>
-            <td><%= link_to 'Destroy', article_path(article),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
+        <hr>
+        <div class="row">
+
+          <div class="col-md-4"><%= link_to article.title, article_path(article)%></div>
+
+            <div class="col-md-4"><%= article.created_at %></div>
+            <div class="col-md-4">
+              <%= link_to 'Edit', edit_article_path(article) %>
+              <%= link_to 'Destroy', article_path(article),
+                      method: :delete,
+                      data: { confirm: '¿Estás seguro?' } %>
+            </div>
+        </div>
+
       <% end %>
-    </table>
+    </div>
   <% else %>
-    <p> No hay noticias </p>
+    <h3 class="text-center"> No hay noticias </h3>
   <% end %>
 </div>
