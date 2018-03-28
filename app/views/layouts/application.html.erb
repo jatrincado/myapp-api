@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>Taller de integración</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-      </li>
-    <% else %>
-    <li>
-      <%= link_to('Login', new_user_session_path)  %>
-    </li>
-    <% end %>
-
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <%= link_to('Noticias en vivo', root_path, class: "nav-link") %>
+      <% if user_signed_in? %>
+          <%= link_to('Ver sitio', articles_path, class: "btn btn-primary btn-lg") %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-primary btn-lg") %>
+      <% else %>
+          <%= link_to('Administrar', new_user_session_path, class: "btn btn-primary btn-lg") %>
+      <% end %>
+    </nav>
+    </br>
+    <div class="container">
+      <div class="row-md-auto">
+        <% flash.each do |key, value| %>
+          <% if value.class == Array %>
+              <div class="<%= flash_class(key) %>">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <% value.each do |message| %>
+                      <%= message %>
+                      </br>
+                  <% end %>
+              </div>
+          <% else %>
+              <div class="<%= flash_class(key) %>">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <%= value %>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="row-md-auto">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
