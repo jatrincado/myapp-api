@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api, defaults: { format: :json } do
+    resources :articles
+  end
+
   get 'welcome/index'
 
   devise_for :users, skip: [:sessions]

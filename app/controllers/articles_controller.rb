@@ -18,18 +18,27 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     smart_add_url_protocol
-    if @article.save
-      redirect_to @article
-    else
-      render 'new'
+
+    respond_to do |format|
+      if @article.save
+        format.html {redirect_to @article, notice: "Noticia creada exitosamente"}
+        format.json {render :show, status: :created, location: @article}
+      else
+        format.html {render 'new'}
+        format.json {render json: @article.errors, status: :unprocessable_entity}
+      end
     end
   end
 
   def update
-    if @article.update(article_params)
-      redirect_to @article
-    else
-      render 'edit'
+    respond_to do |format|
+      if @article.update(article_params)
+        format.html {redirect_to @article, notice: "Noticia modificada exitosamente"}
+        format.json {render :show, status: :updated, location: @article}
+      else
+        format.html {render 'edit'}
+        format.json {render json: @article.errors, status: :unprocessable_entity}
+      end
     end
   end
 
