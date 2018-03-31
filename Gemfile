@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
+gem 'rack-cors'
+gem 'active_model_serializers'

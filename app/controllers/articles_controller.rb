@@ -1,11 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  #before_action :authenticate_user!, except: [:show]
   def index
     @articles = Article.all.order('created_at DESC')
+    respond_to do |format|
+      format.json {render :json => @articles, :status => 200, each_serializer: ArticlesSerializer}
+    end
   end
 
   def show
+    respond_to do |format|
+      format.json {render :json => @article, :status => 200}
+    end
   end
 
   def new

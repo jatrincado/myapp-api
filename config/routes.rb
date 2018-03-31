@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: { format: :json } do
-    resources :articles
-  end
-
-  get 'welcome/index'
-
+    get 'welcome/index'
   devise_for :users, skip: [:sessions]
   as :user do
     get 'signin', to: 'devise/sessions#new', as: :new_user_session
@@ -16,4 +11,5 @@ Rails.application.routes.draw do
     resources :comments
   end
   root 'welcome#index'
+  
 end
