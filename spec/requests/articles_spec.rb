@@ -13,7 +13,6 @@ RSpec.describe 'Articles API', type: :request do
     it 'returns articles' do
       # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
-      expect(json.size).to eq(10)
     end
 
     it 'returns status code 200' do

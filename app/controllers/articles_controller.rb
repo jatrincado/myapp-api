@@ -2,12 +2,12 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   #before_action :authenticate_user!, except: [:show]
   def index
-    #@articles = Article.all.order('created_at DESC')
-    #respond_to do |format|
-    #  format.json {render :json => @articles, :status => 200, each_serializer: ArticlesSerializer}
-    #end
-    @articles = Article.all
-    json_response(@articles)
+    @articles = Article.all.order('created_at DESC')
+    respond_to do |format|
+      format.json {render :json => @articles, :status => 200, each_serializer: ArticlesSerializer}
+    end
+    #@articles = Article.all
+    #json_response(@articles)
   end
 
   def show
@@ -52,13 +52,21 @@ class ArticlesController < ApplicationController
     #  end
     #end
     @article.update(article_params)
-    head :no_content
+    json_response(@article)
   end
 
   def destroy
     @article.destroy
-    head :no_content
-    #redirect_to articles_path
+    json_response(@article)
+    #respond_to do |format|
+    #  if @article.destroy
+        #format.html {redirect_to articles_path, notice: "Noticia eliminada exitosamente"}
+    #    format.json {json_response(@article)}
+    #  else
+        #format.html{redirect_to articles_path, alert: "No se pudo eliminar la noticia"}
+    #    format.json {json_response(@article)}
+    #  end
+    #end
   end
 
 private
