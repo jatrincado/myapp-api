@@ -16814,3 +16814,32 @@ Unpermitted parameter: :article_id
 Completed 201 Created in 29ms (Views: 4.4ms | ActiveRecord: 8.0ms)
 
 
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 13:05:14 -0300
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 404 Not Found in 37ms (Views: 20.0ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 13:05:43 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (8.1ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 13.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=8765432):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 13:11:49 -0300
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 404 Not Found in 26ms (Views: 10.3ms | ActiveRecord: 5.2ms)
+
+
