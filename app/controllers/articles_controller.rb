@@ -51,8 +51,13 @@ class ArticlesController < ApplicationController
     #    format.json {render json: @article.errors, status: :unprocessable_entity}
     #  end
     #end
-    @article.update(article_params)
-    json_response(@article)
+
+    if request.put? && !check_put_params
+      json_response(@article, :unprocessable_entity)
+    else
+      @article.update!(article_params)
+      json_response(@article)
+    end
   end
 
   def destroy
@@ -80,6 +85,9 @@ private
     end
   end
 
+  def check_put_params
+    request.query_parameters[:id] && request.query_parameters[:title] && request.query_parameters[:subtitle] && request.query_parameters[:body] && request.query_parameters[:created_at]
+  end
 
   def set_article
     @article = Article.find(params[:id])
