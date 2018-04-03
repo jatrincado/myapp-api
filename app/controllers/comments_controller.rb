@@ -32,13 +32,17 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create!(comment_params)
     #usa un serializer
     respond_to do |format|
-      format.json {render :json => @comment, :status => :created, serializer: CommentsSerializer}
+      format.json {render :json => @comment, :status => :created, serializer: CommentSerializer}
     end
   end
 
   def update
-    @comment.update!(comment_params)
-    json_response(@article)
+    if request.put? && !check_put_params
+      json_response(@article, :unprocessable_entity)
+    else
+      @comment.update!(comment_params)
+      json_response(@comment)
+    end
   end
 
   def destroy
@@ -47,13 +51,17 @@ class CommentsController < ApplicationController
     #redirect_to article_path(@article)
     @comment.destroy
     respond_to do |format|
-      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+      format.json {render :json => @comment, :status => 200, serializer: CommentSerializer}
     end
   end
 
   private
     def find_article
       @article = Article.find(params[:article_id])
+    end
+
+    def check_put_params
+      request.query_parameters[:id] && request.query_parameters[:author] && request.query_parameters[:comment] && request.query_parameters[:created_at]
     end
 
     def set_article_comment

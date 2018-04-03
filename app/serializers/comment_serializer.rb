@@ -1,4 +1,4 @@
-class CommentsSerializer < ActiveModel::Serializer
+class CommentSerializer < ActiveModel::Serializer
   attributes :id
   attribute :commenter, key: :author
   attribute :body, key: :comment

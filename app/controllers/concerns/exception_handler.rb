@@ -3,11 +3,11 @@ module ExceptionHandler
 
   included do
     rescue_from ActiveRecord::RecordNotFound do |e|
-      json_response({ error: 'not found', message: e.message }, :not_found)
+      json_response(render e, :not_found)
     end
 
     rescue_from ActiveRecord::RecordInvalid do |e|
-      json_response({ error: 'unprocessable entity', message: e.message }, :unprocessable_entity)
+      json_response(render e, :unprocessable_entity)
     end
   end
 end
