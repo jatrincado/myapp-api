@@ -86,7 +86,6 @@ private
   end
 
   def article_params
-    #params.require(:article).permit(:title, :summary, :body, :link)
-    params.permit(:title, :summary, :body, :link)
+    params.permit(:title, :subtitle, :body, :link)
   end
 end

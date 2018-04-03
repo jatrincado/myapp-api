@@ -16314,3 +16314,503 @@ Processing by CommentsController#show as */*
 Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/news" for 127.0.0.1 at 2018-04-03 11:42:47 -0300
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.9ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.76ms)
+Completed 200 OK in 46ms (Views: 33.4ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 11:42:48 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameters: :subtitle, :article
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.7ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 14:42:48.590098"], ["updated_at", "2018-04-03 14:42:48.590098"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 201 Created in 18ms (Views: 2.3ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 11:42:49 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"{{news_id}}"}
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 404 Not Found in 19ms (Views: 9.2ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 11:42:49 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 404 Not Found in 2ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 11:42:49 -0300
+Processing by ArticlesController#update as */*
+  Parameters: {"title"=>"Nuevo título de la noticia", "id"=>"{{news_id}}", "article"=>{"title"=>"Nuevo título de la noticia"}}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 404 Not Found in 3ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 11:42:50 -0300
+Processing by CommentsController#index as */*
+  Parameters: {"article_id"=>"{{news_id}}", "comment"=>{}}
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 404 Not Found in 3ms (Views: 1.3ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 11:42:50 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"{{news_id}}"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 404 Not Found in 6ms (Views: 3.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 11:46:16 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameters: :subtitle, :article
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 14:46:16.334571"], ["updated_at", "2018-04-03 14:46:16.334571"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 201 Created in 8ms (Views: 1.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2018-04-03 11:49:35 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.82ms)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 11:56:00 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 2.5ms)
+
+
+  
+NoMethodError (undefined method `rename' for #<ActionController::Parameters:0x0000556a23d25428>):
+  
+app/controllers/articles_controller.rb:91:in `article_params'
+app/controllers/articles_controller.rb:40:in `create'
+Started GET "/news" for 127.0.0.1 at 2018-04-03 11:56:24 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (5.99ms)
+Completed 200 OK in 33ms (Views: 29.0ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 11:58:42 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameters: :subtitle, :article
+Unpermitted parameters: :title, :subtitle, :body, :article
+  [1m[35m (2.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 44ms (Views: 5.2ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 11:59:58 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameters: :article, :summary
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 4.3ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'subtitle' for Article.):
+  
+app/controllers/articles_controller.rb:40:in `create'
+Started POST "/news" for 127.0.0.1 at 2018-04-03 12:02:35 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "articles" ("title", "summary", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["summary", "Subtítulo de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 15:02:35.916548"], ["updated_at", "2018-04-03 15:02:35.916548"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.38ms)
+Completed 201 Created in 22ms (Views: 2.7ms | ActiveRecord: 12.3ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:04:12 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (14.26ms)
+Completed 200 OK in 54ms (Views: 39.0ms | ActiveRecord: 4.6ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 12:04:12 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "articles" ("title", "summary", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["summary", "Subtítulo de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 15:04:12.898261"], ["updated_at", "2018-04-03 15:04:12.898261"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.32ms)
+Completed 201 Created in 10ms (Views: 2.1ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 12:04:13 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"{{news_id}}"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 404 Not Found in 21ms (Views: 19.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:04:13 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 404 Not Found in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 12:04:13 -0300
+Processing by ArticlesController#update as */*
+  Parameters: {"title"=>"Nuevo título de la noticia", "id"=>"{{news_id}}", "article"=>{"title"=>"Nuevo título de la noticia"}}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 404 Not Found in 4ms (Views: 0.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 12:04:14 -0300
+Processing by CommentsController#index as */*
+  Parameters: {"article_id"=>"{{news_id}}", "comment"=>{}}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 404 Not Found in 3ms (Views: 2.0ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 12:04:14 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"{{news_id}}"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 404 Not Found in 3ms (Views: 0.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:05:49 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 404 Not Found in 19ms (Views: 5.7ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:06:23 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 404 Not Found in 23ms (Views: 5.4ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:08:04 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 404 Not Found in 19ms (Views: 6.1ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:08:42 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 6.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=8765432):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:09:30 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (5.49ms)
+Completed 200 OK in 36ms (Views: 19.4ms | ActiveRecord: 4.5ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 12:09:30 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "articles" ("title", "summary", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["summary", "Subtítulo de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 15:09:30.620391"], ["updated_at", "2018-04-03 15:09:30.620391"]]
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.35ms)
+Completed 201 Created in 11ms (Views: 2.3ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 12:09:30 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"{{news_id}}"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'={{news_id}}):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:09:31 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.9ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.9ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=8765432):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started PATCH "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 12:09:32 -0300
+Processing by ArticlesController#update as */*
+  Parameters: {"title"=>"Nuevo título de la noticia", "id"=>"{{news_id}}", "article"=>{"title"=>"Nuevo título de la noticia"}}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'={{news_id}}):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started GET "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 12:09:32 -0300
+Processing by CommentsController#index as */*
+  Parameters: {"article_id"=>"{{news_id}}", "comment"=>{}}
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 2.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'={{news_id}}):
+  
+app/controllers/comments_controller.rb:56:in `find_article'
+Started POST "/news/%7B%7Bnews_id%7D%7D/comments" for 127.0.0.1 at 2018-04-03 12:09:33 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"{{news_id}}"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'={{news_id}}):
+  
+app/controllers/comments_controller.rb:56:in `find_article'
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:15:44 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (3.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.5ms)
+Completed 200 OK in 13ms (Views: 8.8ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:16:15 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.3ms)
+Completed 200 OK in 15ms (Views: 14.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/news/%7B%7Bnews_id%7D%7D" for 127.0.0.1 at 2018-04-03 12:16:55 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"{{news_id}}"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'={{news_id}}):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started GET "/news/24" for 127.0.0.1 at 2018-04-03 12:17:45 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"24"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.38ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:17:56 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.45ms)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 12:17:56 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "articles" ("title", "summary", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["summary", "Subtítulo de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 15:17:56.974092"], ["updated_at", "2018-04-03 15:17:56.974092"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.34ms)
+Completed 201 Created in 9ms (Views: 1.6ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/news/24" for 127.0.0.1 at 2018-04-03 12:17:57 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"24"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.38ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:17:57 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=8765432):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started PATCH "/news/24" for 127.0.0.1 at 2018-04-03 12:17:58 -0300
+Processing by ArticlesController#update as */*
+  Parameters: {"title"=>"Nuevo título de la noticia", "id"=>"24", "article"=>{"title"=>"Nuevo título de la noticia"}}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameters: :id, :article
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "articles" SET "title" = $1, "updated_at" = $2 WHERE "articles"."id" = $3[0m  [["title", "Nuevo título de la noticia"], ["updated_at", "2018-04-03 15:17:58.135482"], ["id", 24]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 10ms (Views: 2.1ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/news/24/comments" for 127.0.0.1 at 2018-04-03 12:17:58 -0300
+Processing by CommentsController#index as */*
+  Parameters: {"article_id"=>"24", "comment"=>{}}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 24]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (12.7ms)
+Completed 200 OK in 99ms (Views: 62.1ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/news/24/comments" for 127.0.0.1 at 2018-04-03 12:17:58 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"24"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (1.8ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameter: :article_id
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (7.1ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["commenter", "Autor del comentario"], ["body", "contenido del comentario"], ["article_id", 24], ["created_at", "2018-04-03 15:17:58.637430"], ["updated_at", "2018-04-03 15:17:58.637430"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered CommentsSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 200 OK in 32ms (Views: 10.3ms | ActiveRecord: 11.9ms)
+
+
+Started POST "/news/24/comments" for 127.0.0.1 at 2018-04-03 12:18:59 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"24"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameter: :article_id
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["commenter", "Autor del comentario"], ["body", "contenido del comentario"], ["article_id", 24], ["created_at", "2018-04-03 15:18:59.732797"], ["updated_at", "2018-04-03 15:18:59.732797"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered CommentsSerializer with ActiveModelSerializers::Adapter::Attributes (0.41ms)
+Completed 200 OK in 13ms (Views: 3.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2018-04-03 12:19:27 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY created_at DESC[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.53ms)
+Completed 200 OK in 35ms (Views: 22.3ms | ActiveRecord: 5.1ms)
+
+
+Started POST "/news" for 127.0.0.1 at 2018-04-03 12:19:28 -0300
+Processing by ArticlesController#create as */*
+  Parameters: {"title"=>"Título de la noticia creada", "subtitle"=>"Subtítulo de la noticia creada", "body"=>"Cuerpo de la noticia creada", "article"=>{"title"=>"Título de la noticia creada", "body"=>"Cuerpo de la noticia creada"}}
+Can't verify CSRF token authenticity.
+Unpermitted parameter: :article
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "articles" ("title", "summary", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Título de la noticia creada"], ["summary", "Subtítulo de la noticia creada"], ["body", "Cuerpo de la noticia creada"], ["created_at", "2018-04-03 15:19:28.137274"], ["updated_at", "2018-04-03 15:19:28.137274"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.35ms)
+Completed 201 Created in 10ms (Views: 2.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/news/24" for 127.0.0.1 at 2018-04-03 12:19:28 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"24"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/news/8765432" for 127.0.0.1 at 2018-04-03 12:19:28 -0300
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"8765432"}
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 8765432], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=8765432):
+  
+app/controllers/articles_controller.rb:85:in `set_article'
+Started PATCH "/news/24" for 127.0.0.1 at 2018-04-03 12:19:29 -0300
+Processing by ArticlesController#update as */*
+  Parameters: {"title"=>"Nuevo título de la noticia", "id"=>"24", "article"=>{"title"=>"Nuevo título de la noticia"}}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameters: :id, :article
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ArticleSerializer with ActiveModelSerializers::Adapter::Attributes (3.44ms)
+Completed 200 OK in 15ms (Views: 4.6ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/news/24/comments" for 127.0.0.1 at 2018-04-03 12:19:29 -0300
+Processing by CommentsController#index as */*
+  Parameters: {"article_id"=>"24", "comment"=>{}}
+  [1m[36mArticle Load (2.5ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 24]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.56ms)
+Completed 200 OK in 28ms (Views: 18.0ms | ActiveRecord: 6.6ms)
+
+
+Started POST "/news/24/comments" for 127.0.0.1 at 2018-04-03 12:19:29 -0300
+Processing by CommentsController#create as */*
+  Parameters: {"author"=>"Autor del comentario", "comment"=>"contenido del comentario", "article_id"=>"24"}
+Can't verify CSRF token authenticity.
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameter: :article_id
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.7ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["commenter", "Autor del comentario"], ["body", "contenido del comentario"], ["article_id", 24], ["created_at", "2018-04-03 15:19:29.791516"], ["updated_at", "2018-04-03 15:19:29.791516"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered CommentsSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 201 Created in 29ms (Views: 4.4ms | ActiveRecord: 8.0ms)
+
+

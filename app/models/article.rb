@@ -5,5 +5,5 @@ class Article < ApplicationRecord
   validates :summary, length: { maximum: 200 }
   validates :body, presence: true
   #validates :link
-
+  alias_attribute :subtitle, :summary
 end

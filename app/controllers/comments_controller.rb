@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create!(comment_params)
     #usa un serializer
     respond_to do |format|
-      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+      format.json {render :json => @comment, :status => :created, serializer: CommentsSerializer}
     end
   end
 
@@ -62,6 +62,6 @@ class CommentsController < ApplicationController
 
     def comment_params
       #params.require(:comment).permit(:commenter, :body)
-      params.permit(:commenter, :body)
+      params.permit(:author, :comment)
     end
 end
