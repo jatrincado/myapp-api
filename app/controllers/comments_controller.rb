@@ -4,14 +4,14 @@ class CommentsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json {render :json => @article.comments, :status => 200, each_serializer: CommentsSerializer}
+      format.json {render :json => @article.comments, :status => 200, each_serializer: CommentSerializer}
     end
     #json_response(@article.comments)
   end
 
   def show
     respond_to do |format|
-      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+      format.json {render :json => @comment, :status => 200, serializer: CommentSerializer}
     end
   end
 
