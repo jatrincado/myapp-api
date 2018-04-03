@@ -10,7 +10,9 @@ class CommentsController < ApplicationController
   end
 
   def show
-    json_response(@comment)
+    respond_to do |format|
+      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+    end
   end
 
   def new
@@ -27,13 +29,16 @@ class CommentsController < ApplicationController
     #else
     #  flash.alert = "Not created. Fields can't be blank."
     #end
-    @article.comments.create!(comment_params)
-    json_response(@article, :created)
+    @comment = @article.comments.create!(comment_params)
+    #usa un serializer
+    respond_to do |format|
+      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+    end
   end
 
   def update
-    @comment.update(comment_params)
-    json_response(@comment)
+    @comment.update!(comment_params)
+    json_response(@article)
   end
 
   def destroy
@@ -41,7 +46,9 @@ class CommentsController < ApplicationController
     #@comment.destroy
     #redirect_to article_path(@article)
     @comment.destroy
-    json_response(@comment)
+    respond_to do |format|
+      format.json {render :json => @comment, :status => 200, serializer: CommentsSerializer}
+    end
   end
 
   private
